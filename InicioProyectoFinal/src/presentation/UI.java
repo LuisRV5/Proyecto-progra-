@@ -16,15 +16,13 @@ public class UI {
 	private Scene myScene;
 	private Pane pContainer;
 	private GridPane gPMatrix;
-	private Label lSize;
-	private TextField tFSize;
-	private Button bCreate;
+	
+	private Button bMove;
 	private Button[][] buttonMatrix;
 	
 	public UI() {
-		setLSize("tamano");
-		setTFSize();
-		setBCreate("crear");
+		
+		setBMove("Movimiento");
 		setPContainer();
 		setMyScene(pContainer);
 	}
@@ -33,6 +31,7 @@ public class UI {
 		primaryStage.setTitle("Matriz de Componentes");
 		primaryStage.setMinHeight(400);
 		primaryStage.setMinWidth(500);
+		primaryStage.setMaximized(true);
 		primaryStage.setScene(getMyScene());
 		primaryStage.show();
 		}
@@ -47,10 +46,7 @@ public class UI {
 	
 	public void setPContainer() {
 		pContainer = new Pane();
-		pContainer.getChildren().add(lSize);
-		pContainer.getChildren().add(tFSize);
-		pContainer.getChildren().add(bCreate);
-		
+		pContainer.getChildren().add(bMove);
 		}
 	
 	public Pane getPContainer() {
@@ -58,39 +54,19 @@ public class UI {
 		
 	}
 	
-	public void setLSize(String text) {
-		lSize = new Label(text);
-		lSize.setPrefSize(100,20);
-		lSize.setTranslateX(25);
-		lSize.setTranslateY(20);
-	}
-	public Label getLSize() {
-		return lSize;
+	public void setBMove(String text) {
+		bMove = new Button(text);
+		bMove.setPrefSize(100,20);
+		bMove.setTranslateX(900);
+		bMove.setTranslateY(20);
 	}
 	
-	public void setTFSize() {
-		tFSize = new TextField();
-		tFSize.setPrefSize(100,20);
-		tFSize.setTranslateX(145);
-		tFSize.setTranslateY(20);
+	public Button getBMove() {
+		return bMove;
 	}
 	
-	public TextField getTFSize() {
-		return tFSize;
-	}
-	
-	public void setBCreate(String text) {
-		bCreate = new Button(text);
-		bCreate.setPrefSize(100,20);
-		bCreate.setTranslateX(265);
-		bCreate.setTranslateY(20);
-	}
-	public Button getBCreate() {
-		return bCreate;
-	}
-	
-	public void createButtonMatrix(int rows,int columns) {
-		buttonMatrix = new Button[rows][columns];
+	public void createButtonMatrix(int size) {
+		buttonMatrix = new Button[size][size];
 		for(int i=0;i<buttonMatrix.length;i++) {
 			for(int j=0;j<buttonMatrix[0].length;j++) {
 				buttonMatrix[i][j]=new Button();	
@@ -110,7 +86,7 @@ public class UI {
 		gPMatrix.setVgap(0);
 		gPMatrix.setPrefSize(400, 400);
 		gPMatrix.setTranslateX(25);
-		gPMatrix.setTranslateY(60);
+		gPMatrix.setTranslateY(10);
 		
 		for(int i=0;i<buttonMatrix.length;i++) {
 			for(int j=0;j<buttonMatrix[0].length;j++) {

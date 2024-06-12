@@ -3,8 +3,15 @@ package business;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import data.FilesXML;
-import domain.*;
+import domain.Alien;
+import domain.Building;
+import domain.City;
+import domain.Human;
+import domain.ImmovableElement;
+import domain.MovableElement;
+import domain.Tree;
+import domain.Zombie;
+import data.*;
 import presentation.UI;
 
 public class Controller {
@@ -18,6 +25,7 @@ public class Controller {
 	private Tree t = new Tree();
 	private City city;
 	private FilesXML fxml;
+	 
 	private ArrayList<MovableElement> zombies = new ArrayList<MovableElement>();
 	private ArrayList<MovableElement> humanos = new ArrayList<MovableElement>();
 	private ArrayList<MovableElement> aliens = new ArrayList<MovableElement>();
@@ -27,51 +35,55 @@ public class Controller {
 	public Controller(UI ui) {
 		this.ui=ui;
 		logic = new Logic();
-		fxml = new FilesXML();
 		city = new City();
+		fxml = new FilesXML();
 	}
 
 	public void getControl() {
+		
+		arrays();
 		fxml.deleteXML("Descripcion De Ciudad.xml");
 		fxml.createXML("Country","Descripcion De Ciudad.xml");
 		fxml.writeXML("Descripcion De Ciudad.xml","city",city.getDataName(),city.getData());
 		city = fxml.readXML("Descripcion De Ciudad.xml","city");
 		System.out.println(city.toString());
 		
-	ui.getBCreate().setOnAction(e->{
 		System.out.println("XDDDDDD");
 		if(ui.getPContainer().getChildren().contains(ui.getGPMatrix())) {
 			ui.getPContainer().getChildren().remove(ui.getGPMatrix());
 		}
-	ui.createButtonMatrix(logic.columsAndRows(ui.getTFSize().getText()).get(0),
-						  logic.columsAndRows(ui.getTFSize().getText()).get(1));	
-	//Se agrega la matriz a al GP
-	ui.setGPMatrix(ui.getButtonMatrix());
-	//Se agrega el GP a la ventana
-	ui.getPContainer().getChildren().add(ui.getGPMatrix());
+		ui.createButtonMatrix(city.getSize());	
+		//Se agrega la matriz a al GP
+		ui.setGPMatrix(ui.getButtonMatrix());
+		//Se agrega el GP a la ventana
+		ui.getPContainer().getChildren().add(ui.getGPMatrix());
 	
-	arrays();
+		logic.setMovableObject(ui.getButtonMatrix(), zombies, "Z");
+		logic.setMovableObject(ui.getButtonMatrix(), humanos, "H");
+		logic.setMovableObject(ui.getButtonMatrix(), aliens, "A");
+		logic.setImmovableObject(ui.getButtonMatrix(), edificios, "E");
+		logic.setImmovableObject(ui.getButtonMatrix(), arboles, "T");
 	
-	logic.setMovableObject(ui.getButtonMatrix(), zombies, "Z");
-	logic.setMovableObject(ui.getButtonMatrix(), humanos, "H");
-	logic.setMovableObject(ui.getButtonMatrix(), aliens, "A");
-	logic.setImmovableObject(ui.getButtonMatrix(), edificios, "E");
-	logic.setImmovableObject(ui.getButtonMatrix(), arboles, "T");
+		System.out.println(zombies.toString());
+		System.out.println(humanos.toString());
+		System.out.println(aliens.toString());
+		System.out.println(edificios.toString());
+		System.out.println(arboles.toString());
 	
-	System.out.println(zombies.toString());
-	System.out.println(humanos.toString());
-	System.out.println(aliens.toString());
-	System.out.println(edificios.toString());
-	System.out.println(arboles.toString());
+		
 	
-	});
+		ui.getBMove().setOnAction(e->{
+			for(int i=0;i<zombies.size();i++) {
+				logic.setNewPosition(ui.getButtonMatrix(), zombies.get(i),i);
+			}
+		});
 	
-	}	
+		}	
 	
 	public void arrays() {
 		for(int i=0;i<15;i++) {
 			z = new Zombie();
-			humanos.add(z);
+			zombies.add(z);
 		}
 		
 		for(int i=0;i<15;i++) {
