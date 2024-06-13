@@ -2,28 +2,28 @@ package domain;
 
 public class Alien implements MovableElement {
 
-	private int positionX = 0;
-	private int positionY = 0;
-	private int lastMove = 0;
+	private int positionRow = 0;
+	private int positionColumn = 0;
+	private int lastMove = 4;
 
 	public Alien() {
 		
 	}
 
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
+	public void setPositionRow(int positionX) {
+		this.positionRow = positionX;
 	}
 	
-	public int getPositionX() {
-		return positionX;
+	public int getPositionRow() {
+		return positionRow;
 	}
 
-	public void setPositionY(int positionY) {
-		this.positionY = positionY;
+	public void setPositionColumn(int positionY) {
+		this.positionColumn = positionY;
 	}
 	
-	public int getPositionY() {
-		return positionY;
+	public int getPositionColumn() {
+		return positionColumn;
 	}
 	
 	public void setLastMove(int lastMove) {
@@ -36,6 +36,6 @@ public class Alien implements MovableElement {
 	
 	@Override
 	public String toString() {
-		return "Alien [positionX=" + positionX + ", positionY=" + positionY + ", lastMove=" + lastMove + "]\n";
+		return "Alien [positionRow=" + positionRow + ", positionColumn=" + positionColumn + ", lastMove=" + lastMove + "]\n";
 	}
 }

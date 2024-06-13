@@ -2,31 +2,31 @@ package domain;
 
 public class Tree implements ImmovableElement {
 
-	private int positionX = 0;
-	private int positionY = 0;
+	private int positionRow = 0;
+	private int positionColumn = 0;
 
 	public Tree() {
 		
 	}
 
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
+	public void setPositionRow(int positionRow) {
+		this.positionRow = positionRow;
 	}
 	
-	public int getPositionX() {
-		return positionX;
+	public int getPositionRow() {
+		return positionRow;
 	}
 
-	public void setPositionY(int positionY) {
-		this.positionY = positionY;
+	public void setPositionColumn(int positionColum) {
+		this.positionColumn = positionColum;
 	}
 	
-	public int getPositionY() {
-		return positionY;
+	public int getPositionColumn() {
+		return positionColumn;
 	}
 	
 	@Override
 	public String toString() {
-		return "Tree [positionX=" + positionX + ", positionY=" + positionY + "]\n";
+		return "Tree [positionRow=" + positionRow + ", positionColum=" + positionColumn + "]\n";
 	}
 }

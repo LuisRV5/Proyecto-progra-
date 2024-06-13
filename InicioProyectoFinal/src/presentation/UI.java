@@ -68,10 +68,11 @@ public class UI {
 	public void createButtonMatrix(int size) {
 		buttonMatrix = new Button[size][size];
 		for(int i=0;i<buttonMatrix.length;i++) {
-			for(int j=0;j<buttonMatrix[0].length;j++) {
+			for(int j=0;j<buttonMatrix[i].length;j++) {
 				buttonMatrix[i][j]=new Button();	
 				buttonMatrix[i][j].setPrefSize(40,40);
 				buttonMatrix[i][j].setMinSize(40,40);
+				
 				}
 		}
 	}
@@ -89,8 +90,8 @@ public class UI {
 		gPMatrix.setTranslateY(10);
 		
 		for(int i=0;i<buttonMatrix.length;i++) {
-			for(int j=0;j<buttonMatrix[0].length;j++) {
-				gPMatrix.add(buttonMatrix[i][j],i,j);
+			for(int j=0;j<buttonMatrix[i].length;j++) {
+				gPMatrix.add(buttonMatrix[i][j],j,i);
 		
 				}
 		}

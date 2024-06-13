@@ -2,32 +2,32 @@ package domain;
 
 public class Building implements ImmovableElement {
 
-	private int positionX = 0;
-	private int positionY = 0;
+	private int positionRow = 0;
+	private int positionColumn = 0;
 
 	public Building() {
 		
 	}
 
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
+	public void setPositionRow(int positionRow) {
+		this.positionRow = positionRow;
 	}
 	
-	public int getPositionX() {
-		return positionX;
+	public int getPositionRow() {
+		return positionRow;
 	}
 
-	public void setPositionY(int positionY) {
-		this.positionY = positionY;
+	public void setPositionColumn(int positionColumn) {
+		this.positionColumn = positionColumn;
 	}
 	
-	public int getPositionY() {
-		return positionY;
+	public int getPositionColumn() {
+		return positionColumn;
 	}
 	
 	@Override
 	public String toString() {
-		return "Building [positionX=" + positionX + ", positionY=" + positionY + "]\n";
+		return "Building [positionRow=" + positionRow + ", positionColumn=" + positionColumn + "]\n";
 	}
 
 }

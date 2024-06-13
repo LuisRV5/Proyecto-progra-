@@ -29,19 +29,19 @@ public class Logic {
 public void setImmovableObject(Button[][] buttonMatrix, ArrayList<ImmovableElement> mES, String x) {
 		
 		boolean flag = false;
-		int positionX = 0;
-		int positionY = 0;
+		int positionRow = 0;
+		int positionColumn = 0;
 		int counter = 0;
 		
 		for(int i=0;i<mES.size();i++) {
 			do {
 				flag = false;
-				positionX = numRandom(20);
-				positionY = numRandom(20);
-				if(buttonMatrix[positionX][positionY].getText() == "") {
-					mES.get(i).setPositionX(positionX);
-					mES.get(i).setPositionY(positionY);
-					buttonMatrix[positionX][positionY].setText(x);
+				positionRow = numRandom(20);
+				positionColumn = numRandom(20);
+				if(buttonMatrix[positionRow][positionColumn].getText() == "") {
+					mES.get(i).setPositionRow(positionRow);
+					mES.get(i).setPositionColumn(positionColumn);
+					buttonMatrix[positionRow][positionColumn].setText(x);
 				}else {
 				flag = true;
 				counter++;
@@ -56,19 +56,19 @@ public void setImmovableObject(Button[][] buttonMatrix, ArrayList<ImmovableEleme
 	public void setMovableObject(Button[][] buttonMatrix, ArrayList<MovableElement> mES, String x) {
 		
 		boolean flag = false;
-		int positionX = 0;
-		int positionY = 0;
+		int positionRow = 0;
+		int positionColumn = 0;
 		int counter = 0;
 		
 		for(int i=0;i<mES.size();i++) {
 			do {
 				flag = false;
-				positionX = numRandom(20);
-				positionY = numRandom(20);
-				if(buttonMatrix[positionX][positionY].getText() == "") {
-					mES.get(i).setPositionX(positionX);
-					mES.get(i).setPositionY(positionY);
-					buttonMatrix[positionX][positionY].setText(x);
+				positionRow = numRandom(20);
+				positionColumn = numRandom(20);
+				if(buttonMatrix[positionRow][positionColumn].getText() == "") {
+					mES.get(i).setPositionRow(positionRow);
+					mES.get(i).setPositionColumn(positionColumn);
+					buttonMatrix[positionRow][positionColumn].setText(x);
 				}else {
 				flag = true;
 				counter++;
@@ -84,7 +84,6 @@ public void setImmovableObject(Button[][] buttonMatrix, ArrayList<ImmovableEleme
 		System.out.println("Zombie "+i +":cambiando posicion");
 		System.out.println(eM.toString());
 		boolean flag = true;
-		int counter = 0;
 		
 		//0 = Izquierda
 		//1 = Derecha
@@ -97,48 +96,48 @@ public void setImmovableObject(Button[][] buttonMatrix, ArrayList<ImmovableEleme
 			if(movement!=eM.getLastMove()) {
 				switch(movement) {
 				case 0:
-					if(eM.getPositionX()>0) {
+					if(eM.getPositionColumn()>0) {
 						System.out.println("Condicional 1 si");
-						if(!(buttonMatrix[eM.getPositionY()][eM.getPositionX()-1].getText().equals("E")) 
-								&& (!buttonMatrix[eM.getPositionY()][eM.getPositionX()-1].getText().equals("T"))) {
+						if(!(buttonMatrix[eM.getPositionRow()][eM.getPositionColumn()-1].getText().equals("E")) 
+								&& (!buttonMatrix[eM.getPositionRow()][eM.getPositionColumn()-1].getText().equals("T"))) {
 							System.out.println("Condicional 2 si");
-							eM.setPositionX(eM.getPositionX()-1);
+							eM.setPositionColumn(eM.getPositionColumn()-1);
 							eM.setLastMove(0);
 							flag = false;
 						}
 					}
 					break;
 				case 1:
-					if(eM.getPositionX()<buttonMatrix.length) {
+					if(eM.getPositionColumn()<buttonMatrix[0].length-1) {
 						System.out.println("Condicional 1 si");
-						if((!buttonMatrix[eM.getPositionY()][eM.getPositionX()+1].getText().equals("E")) 
-								&& (!buttonMatrix[eM.getPositionY()][eM.getPositionX()+1].getText().equals("T"))) {
+						if((!buttonMatrix[eM.getPositionRow()][eM.getPositionColumn()+1].getText().equals("E")) 
+								&& (!buttonMatrix[eM.getPositionRow()][eM.getPositionColumn()+1].getText().equals("T"))) {
 							System.out.println("Condicional 2 si");
-							eM.setPositionX(eM.getPositionX()+1);
+							eM.setPositionColumn(eM.getPositionColumn()+1);
 							eM.setLastMove(1);
 							flag = false;
 						}
 					}
 					break;
 				case 2:
-					if(eM.getPositionY()>0) {
+					if(eM.getPositionRow()>0) {
 						System.out.println("Condicional 1 si");
-						if((!buttonMatrix[eM.getPositionY()-1][eM.getPositionX()].getText().equals("E")) 
-								&& (!buttonMatrix[eM.getPositionY()-1][eM.getPositionX()].getText().equals("T"))) {
+						if((!buttonMatrix[eM.getPositionRow()-1][eM.getPositionColumn()].getText().equals("E")) 
+								&& (!buttonMatrix[eM.getPositionRow()-1][eM.getPositionColumn()].getText().equals("T"))) {                   
 							System.out.println("Condicional 2 si");
-							eM.setPositionY(eM.getPositionY()-1);
+							eM.setPositionRow(eM.getPositionRow()-1);
 							eM.setLastMove(2);
 							flag = false;
 						}
 					}
 					break;
 				case 3:
-					if(eM.getPositionY()<buttonMatrix[0].length) {
+					if(eM.getPositionRow()<buttonMatrix[0].length-1) {
 						System.out.println("Condicional 1 si");
-						if((!buttonMatrix[eM.getPositionY()+1][eM.getPositionX()].getText().equals("E")) 
-								&& (!buttonMatrix[eM.getPositionY()+1][eM.getPositionX()].getText().equals("T")) ) {
+						if((!buttonMatrix[eM.getPositionRow()+1][eM.getPositionColumn()].getText().equals("E")) 
+								&& (!buttonMatrix[eM.getPositionRow()+1][eM.getPositionColumn()].getText().equals("T")) ) {
 							System.out.println("Condicional 2 si");
-							eM.setPositionY(eM.getPositionY()+1);
+							eM.setPositionRow(eM.getPositionRow()+1);
 							eM.setLastMove(3);
 							flag = false;
 						}

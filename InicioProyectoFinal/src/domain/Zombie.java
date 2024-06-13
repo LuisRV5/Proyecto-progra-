@@ -2,28 +2,28 @@ package domain;
 
 public class Zombie implements MovableElement {
 
-	private int positionX = 0;
-	private int positionY = 0;
-	private int lastMove = 0;
+	private int positionRow = 0;
+	private int positionColumn = 0;
+	private int lastMove = 4;
 
 	public Zombie() {
 		
 	}
 
-	public void setPositionX(int positionX) {
-		this.positionX = positionX;
+	public void setPositionRow(int positionRow) {
+		this.positionRow = positionRow;
 	}
 	
-	public int getPositionX() {
-		return positionX;
+	public int getPositionRow() {
+		return positionRow;
 	}
 
-	public void setPositionY(int positionY) {
-		this.positionY = positionY;
+	public void setPositionColumn(int positionColumn) {
+		this.positionColumn = positionColumn;
 	}
 	
-	public int getPositionY() {
-		return positionY;
+	public int getPositionColumn() {
+		return positionColumn;
 	}
 	
 	public void setLastMove(int lastMove) {
@@ -36,7 +36,7 @@ public class Zombie implements MovableElement {
 
 	@Override
 	public String toString() {
-		return "Zombie [positionX=" + positionX + ", positionY=" + positionY + ", lastMove=" + lastMove + "]\n";
+		return "Zombie [positionRow=" + positionRow + ", positionColumn=" + positionColumn + ", lastMove=" + lastMove + "]\n";
 	}
 	
 }

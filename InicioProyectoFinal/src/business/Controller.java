@@ -41,23 +41,26 @@ public class Controller {
 
 	public void getControl() {
 		
+		// Llena los arrays con los objetos necesarios
 		arrays();
+		// Elimina archivo anterior y crea uno nuevo
 		fxml.deleteXML("Descripcion De Ciudad.xml");
 		fxml.createXML("Country","Descripcion De Ciudad.xml");
-		fxml.writeXML("Descripcion De Ciudad.xml","city",city.getDataName(),city.getData());
+		// Agrega la ciudad con su descripcion al XML
+		fxml.writeXML("Descripcion De Ciudad.xml","City",city.getDataName(),city.getData());
+		// Obtiene la descripcion de la ciudad para usarla como objeto
 		city = fxml.readXML("Descripcion De Ciudad.xml","city");
-		System.out.println(city.toString());
 		
-		System.out.println("XDDDDDD");
 		if(ui.getPContainer().getChildren().contains(ui.getGPMatrix())) {
 			ui.getPContainer().getChildren().remove(ui.getGPMatrix());
 		}
+		// Crea la matriz con respecto al tamanio
 		ui.createButtonMatrix(city.getSize());	
-		//Se agrega la matriz a al GP
+		// Se agrega la matriz a al GP
 		ui.setGPMatrix(ui.getButtonMatrix());
-		//Se agrega el GP a la ventana
+		// Se agrega el GP a la ventana
 		ui.getPContainer().getChildren().add(ui.getGPMatrix());
-	
+		
 		logic.setMovableObject(ui.getButtonMatrix(), zombies, "Z");
 		logic.setMovableObject(ui.getButtonMatrix(), humanos, "H");
 		logic.setMovableObject(ui.getButtonMatrix(), aliens, "A");
@@ -69,13 +72,21 @@ public class Controller {
 		System.out.println(aliens.toString());
 		System.out.println(edificios.toString());
 		System.out.println(arboles.toString());
-	
 		
-	
+		
 		ui.getBMove().setOnAction(e->{
 			for(int i=0;i<zombies.size();i++) {
 				logic.setNewPosition(ui.getButtonMatrix(), zombies.get(i),i);
 			}
+			if(ui.getPContainer().getChildren().contains(ui.getGPMatrix())) {
+				ui.getPContainer().getChildren().remove(ui.getGPMatrix());
+			}
+			// Crea la matriz con respecto al tamanio
+			ui.createButtonMatrix(city.getSize());	
+			// Se agrega la matriz a al GP
+			ui.setGPMatrix(ui.getButtonMatrix());
+			// Se agrega el GP a la ventana
+			ui.getPContainer().getChildren().add(ui.getGPMatrix());
 		});
 	
 		}	

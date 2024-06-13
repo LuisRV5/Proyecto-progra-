@@ -2,11 +2,11 @@ package domain;
 
 public interface ImmovableElement {
 
-	public abstract void setPositionX(int positionX);
+	public abstract void setPositionRow(int positionRow);
 	
-	public abstract int getPositionX();
+	public abstract int getPositionRow();
 
-	public abstract void setPositionY(int positionY);
+	public abstract void setPositionColumn(int positionColumn);
 	
-	public abstract int getPositionY();
+	public abstract int getPositionColumn();
 }
