@@ -13,6 +13,7 @@ public class City {
 	public City() {
 		
 	};
+	
 	public City(int size, int buildings, int trees, int aliens, int zombies, int humans, int potions) {
 		this.size = size;
 		this.buildings = buildings;

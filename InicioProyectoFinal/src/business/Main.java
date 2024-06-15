@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		UI ui = new UI();
+		UI ui = UI.getInstance();
 		Controller controller = new Controller(ui);
 		controller.getControl();
 		ui.start(primaryStage);

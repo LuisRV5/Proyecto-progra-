@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class UI {
+	
+	private static UI ui;
 
 	private Scene myScene;
 	private Pane pContainer;
@@ -20,8 +22,8 @@ public class UI {
 	private Button bMove;
 	private Button[][] buttonMatrix;
 	
-	public UI() {
-		
+	
+	private UI() {
 		setBMove("Movimiento");
 		setPContainer();
 		setMyScene(pContainer);
@@ -99,4 +101,12 @@ public class UI {
 	public GridPane getGPMatrix() {
 		return gPMatrix;
 	}
+	
+	public static UI getInstance() {
+		if(ui==null) {
+		ui = new UI();
+		}
+		return ui;
+	}
+	
 }

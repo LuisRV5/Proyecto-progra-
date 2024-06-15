@@ -75,16 +75,16 @@ public class Controller {
 		
 		
 		ui.getBMove().setOnAction(e->{
-			for(int i=0;i<zombies.size();i++) {
-				logic.setNewPosition(ui.getButtonMatrix(), zombies.get(i),i);
-			}
+			
 			if(ui.getPContainer().getChildren().contains(ui.getGPMatrix())) {
 				ui.getPContainer().getChildren().remove(ui.getGPMatrix());
 			}
-			// Crea la matriz con respecto al tamanio
-			ui.createButtonMatrix(city.getSize());	
-			// Se agrega la matriz a al GP
-			ui.setGPMatrix(ui.getButtonMatrix());
+			
+			for(int i=0;i<zombies.size();i++) {
+				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].setText("");
+				logic.setNewPosition(ui.getButtonMatrix(), zombies.get(i),i);
+				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].setText(ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].getText()+"Z");
+			}
 			// Se agrega el GP a la ventana
 			ui.getPContainer().getChildren().add(ui.getGPMatrix());
 		});
@@ -92,27 +92,27 @@ public class Controller {
 		}	
 	
 	public void arrays() {
-		for(int i=0;i<15;i++) {
+		for(int i=0;i<city.getZombies();i++) {
 			z = new Zombie();
 			zombies.add(z);
 		}
 		
-		for(int i=0;i<15;i++) {
+		for(int i=0;i<city.getHumans();i++) {
 			h = new Human();
 			humanos.add(h);
 		}
 		
-		for(int i=0;i<15;i++) {
+		for(int i=0;i<city.getAliens();i++) {
 			a = new Alien();
 			aliens.add(a);
 		}
 		
-		for(int i=0;i<20;i++) {
+		for(int i=0;i<city.getBuildings();i++) {
 			ed = new Building();
 			edificios.add(ed);
 		}
 		
-		for(int i=0;i<20;i++) {
+		for(int i=0;i<city.getTrees();i++) {
 			t = new Tree();
 			arboles.add(t);
 		}
