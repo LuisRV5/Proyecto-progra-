@@ -31,8 +31,6 @@ public class UI {
 	
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Matriz de Componentes");
-		primaryStage.setMinHeight(400);
-		primaryStage.setMinWidth(500);
 		primaryStage.setMaximized(true);
 		primaryStage.setScene(getMyScene());
 		primaryStage.show();

@@ -150,4 +150,12 @@ public void setImmovableObject(Button[][] buttonMatrix, ArrayList<ImmovableEleme
 		System.out.println(eM.toString());
 		System.out.println("Zombie cambiado de posicion\n");
 	}
+	
+	public void actuMatriz(Button[][] matriz,MovableElement mE,MovableElement mE2,MovableElement mE3) {
+		for(int i=0;i<matriz.length;i++) {
+			for(int j=0;i<matriz.length;j++) {
+				
+			}
+		}
+	}
 }

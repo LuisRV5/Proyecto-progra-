@@ -81,9 +81,26 @@ public class Controller {
 			}
 			
 			for(int i=0;i<zombies.size();i++) {
+				
 				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].setText("");
+				ui.getButtonMatrix()[humanos.get(i).getPositionRow()][humanos.get(i).getPositionColumn()].setText("");
+				ui.getButtonMatrix()[aliens.get(i).getPositionRow()][aliens.get(i).getPositionColumn()].setText("");
+				
 				logic.setNewPosition(ui.getButtonMatrix(), zombies.get(i),i);
-				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].setText(ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].getText()+"Z");
+				
+				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].setText(
+				ui.getButtonMatrix()[zombies.get(i).getPositionRow()][zombies.get(i).getPositionColumn()].getText() + "Z");
+				
+				logic.setNewPosition(ui.getButtonMatrix(), humanos.get(i),i);
+				
+				ui.getButtonMatrix()[humanos.get(i).getPositionRow()][humanos.get(i).getPositionColumn()].setText(
+				ui.getButtonMatrix()[humanos.get(i).getPositionRow()][humanos.get(i).getPositionColumn()].getText()+ "H");
+				
+				logic.setNewPosition(ui.getButtonMatrix(), aliens.get(i),i);
+				
+				ui.getButtonMatrix()[aliens.get(i).getPositionRow()][aliens.get(i).getPositionColumn()].setText(
+				ui.getButtonMatrix()[aliens.get(i).getPositionRow()][aliens.get(i).getPositionColumn()].getText() + "A");
+				
 			}
 			// Se agrega el GP a la ventana
 			ui.getPContainer().getChildren().add(ui.getGPMatrix());
