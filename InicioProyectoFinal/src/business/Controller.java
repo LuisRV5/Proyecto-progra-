@@ -6,6 +6,7 @@ import java.util.Arrays;
 import domain.Alien;
 import domain.Building;
 import domain.City;
+import domain.Events;
 import domain.Human;
 import domain.ImmovableElement;
 import domain.MovableElement;
@@ -25,6 +26,7 @@ public class Controller {
 	private Tree t = new Tree();
 	private City city;
 	private FilesXML fxml;
+	private Events event;
 	 
 	private ArrayList<MovableElement> zombies = new ArrayList<MovableElement>();
 	private ArrayList<MovableElement> humanos = new ArrayList<MovableElement>();
@@ -37,19 +39,29 @@ public class Controller {
 		logic = new Logic();
 		city = new City();
 		fxml = new FilesXML();
+		event = new Events();
 	}
 
 	public void getControl() {
+		
 		
 		// Llena los arrays con los objetos necesarios
 		arrays();
 		// Elimina archivo anterior y crea uno nuevo
 		fxml.deleteXML("Descripcion De Ciudad.xml");
+		fxml.deleteXML("Acontecimientos.xml");
+		
 		fxml.createXML("Country","Descripcion De Ciudad.xml");
+		fxml.createXML("eventos","Acontecimientos.xml");
 		// Agrega la ciudad con su descripcion al XML
 		fxml.writeXML("Descripcion De Ciudad.xml","City",city.getDataName(),city.getData());
+		fxml.writeXML("Acontecimientos.xml","eventos",event.getDataName(),event.getData());
 		// Obtiene la descripcion de la ciudad para usarla como objeto
-		city = fxml.readXML("Descripcion De Ciudad.xml","city");
+		city = fxml.readCityXML("Descripcion De Ciudad.xml","city");
+		
+		ui.setObservableList(fxml.readEventsXML("Acontecimientos.xml","event"));
+		ui.setTVEventes(ui.getObservableList());
+		ui.getPContainer().getChildren().add(ui.getTVEvents());
 		
 		if(ui.getPContainer().getChildren().contains(ui.getGPMatrix())) {
 			ui.getPContainer().getChildren().remove(ui.getGPMatrix());

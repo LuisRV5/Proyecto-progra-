@@ -1,10 +1,16 @@
 package presentation;
 
-import javax.swing.SpringLayout.Constraints;
+import java.util.ArrayList;
 
+import domain.Events;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -19,6 +25,8 @@ public class UI {
 	private Pane pContainer;
 	private GridPane gPMatrix;
 	
+	private TableView<Events> tvEvents;
+	private ObservableList<Events> oLEvents;
 	private Button bMove;
 	private Button[][] buttonMatrix;
 	
@@ -75,6 +83,44 @@ public class UI {
 				
 				}
 		}
+	}
+	public void setTVEventes(ObservableList<Events> oLEvents) {
+		tvEvents = new TableView<Events>();
+		//crear columnas
+		TableColumn<Events, String> avenueColumn = new TableColumn<>("Avenida");
+		avenueColumn.setCellValueFactory(cellData -> cellData.getValue().avenueProperty());
+		avenueColumn.setPrefWidth(115);//ancho
+		
+		TableColumn<Events, String> streetColumn = new TableColumn<>("Calle");
+		streetColumn.setCellValueFactory(cellData -> cellData.getValue().streetProperty());
+		streetColumn.setPrefWidth(115);//ancho
+		
+		TableColumn<Events, String> eventColumn = new TableColumn<>("Evento");
+		eventColumn.setCellValueFactory(cellData -> cellData.getValue().eventProperty());
+		eventColumn.setPrefWidth(115);//ancho
+		
+		TableColumn<Events, String> resultColumn = new TableColumn<>("Resultado");
+		resultColumn.setCellValueFactory(cellData -> cellData.getValue().resultProperty());
+		resultColumn.setPrefWidth(115);//ancho
+		
+		tvEvents.getColumns().addAll(avenueColumn,streetColumn,eventColumn,resultColumn);
+		tvEvents.setPrefSize(460,200);
+		tvEvents.setTranslateX(900);
+		tvEvents.setTranslateY(110);
+		
+		tvEvents.setItems(oLEvents);
+	}
+
+	public TableView<Events> getTVEvents(){
+		return this.tvEvents;
+	}
+	
+	public void setObservableList(ArrayList<Events> Events) {
+		oLEvents = FXCollections.observableArrayList(Events);
+	}
+	
+	public ObservableList<Events> getObservableList(){
+		return oLEvents;
 	}
 	
 	public Button[][] getButtonMatrix(){

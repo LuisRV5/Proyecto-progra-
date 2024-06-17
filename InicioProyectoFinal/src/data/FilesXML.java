@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import domain.City;
+import domain.Events;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -121,7 +122,7 @@ public class FilesXML {
 		
 	}
 	
-	public City readXML(String address,String elementType) {
+	public City readCityXML(String address,String elementType) {
 		City city = new City();
 		
 		try {
@@ -157,6 +158,42 @@ public class FilesXML {
 			e.printStackTrace();
 		}
 		return city;
+	}
+	
+
+	public ArrayList<Events> readEventsXML(String address,String elementType) {
+		ArrayList<Events> alEvents = new ArrayList<Events>();
+		
+		try {
+			File inputFile = new File(address);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(inputFile);
+			doc.getDocumentElement().normalize();
+			
+			System.out.println("Raiz de los elementos:" + doc.getDocumentElement().getNodeName());
+			
+			NodeList nList= doc.getElementsByTagName(elementType);
+			System.out.println("--------------------------");
+			Node nNode=null;
+			for(int indice = 0;indice < nList.getLength();indice++) {
+				nNode = nList.item(indice);
+				System.out.println("\nDatos de las personas : " + nNode.getNodeName());
+				
+				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+							
+					alEvents.add(new Events(eElement.getElementsByTagName("avenue").item(0).getTextContent(),
+											eElement.getElementsByTagName("street").item(0).getTextContent(),
+											eElement.getElementsByTagName("event").item(0).getTextContent(),
+											eElement.getElementsByTagName("result").item(0).getTextContent()));
+					
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return alEvents;
 	}
 
 }
